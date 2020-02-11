@@ -1,0 +1,7 @@
+Django==2.2.7
+djangorestframework==3.10.2
+djangorestframework-simplejwt==4.3.0
+psycopg2==2.8.3
+pycrypto==2.6.1
+requests==2.22.
+django-crispy-forms
