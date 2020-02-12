@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&72iradi(6@n4$oqtmnwd!1)4&^lyzl$5skf(+x#2srfuv0e@f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -36,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'author',
-    'book'
+    'book',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +142,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 4
 }
+
+sentry_sdk.init(
+    dsn="https://3e74aac708cf41c8bfad63f2628b854a@sentry.io/2469473",
+    integrations=[DjangoIntegration()],
+    send_default_pii=True
+)

@@ -9,29 +9,30 @@ class BookViewSet(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
-    
     def validate_instance_request(self, data, required_fields):
         """ Validator for fields required
         """
-        error_fields = [field for field in required_fields if field not in data]
+        error_fields = [
+            field for field in required_fields if field not in data]
         return error_fields
 
     def return_error_http(self, http_code, msg):
         """ Error return handling
         """
         return HttpResponse(json.dumps({"result": "Error", "message": msg}),
-                        status=http_code,
-                        content_type="application/json")
+                            status=http_code,
+                            content_type="application/json")
 
     def get_queryset(self):
         """Responsible for method get, 
         with possible filter for many fields
         """
         queryset = Book.objects.all()
-        
+
         name = self.request.query_params.get('name', None)
 
-        publication_year = self.request.query_params.get('publication_year', None)
+        publication_year = self.request.query_params.get(
+            'publication_year', None)
 
         edition = self.request.query_params.get('edition', None)
 
@@ -54,7 +55,8 @@ class BookViewSet(ModelViewSet):
         queryset = Book.objects.all()
 
         required_fields = ['name', 'edition', 'publication_year', 'author_ids']
-        has_errors = self.validate_instance_request(request.data, required_fields)
+        has_errors = self.validate_instance_request(
+            request.data, required_fields)
 
         if has_errors:
             message = ('Field(s) %s required' % ', '.join(has_errors))
@@ -65,8 +67,8 @@ class BookViewSet(ModelViewSet):
 
         if book:
             return HttpResponse("The informed book is already registered.",
-                status=308,
-                content_type="application/json")
+                                status=308,
+                                content_type="application/json")
         else:
             abook = Book.objects.create(
                 name=request.data.get('name'),
