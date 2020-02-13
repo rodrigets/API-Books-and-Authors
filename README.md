@@ -7,7 +7,7 @@ It was created in a Docker container with the necessary requirements to manage b
 Download the project to the environment:
 
 ```
-git clone https://gitlab.com/rodrigets/api-books-and-authors.git
+git clone https://github.com/rodrigets/api_books_authors.git
 ```
 
 Compile the Docker image by running the command below in the same location where the files are found ```Dockerfile``` and ```docker-composer.yml```
@@ -25,7 +25,7 @@ docker-compose up
 To import the authors from the csv file, with the container running, execute:
 
 ```
-docker exec -it api-books-and-authors_web_1 python manage.py author_import_csv
+docker exec -it core_web_1 python manage.py author_import_csv
 ```
 
 Api Documentation
