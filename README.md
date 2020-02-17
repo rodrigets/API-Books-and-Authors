@@ -25,7 +25,7 @@ docker-compose up
 To import the authors from the csv file, with the container running, execute:
 
 ```
-docker exec -it core_web_1 python manage.py author_import_csv
+docker exec -it apibooksauthors_web_1 python manage.py author_import_csv
 ```
 
 Api Documentation
